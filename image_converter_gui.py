@@ -9,7 +9,7 @@
 ################################################################################
 
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog, QLabel
 
 #===================================================
 # GUI作成
@@ -23,18 +23,22 @@ class DirectoryPathApp(QMainWindow):
         self.setWindowTitle("ディレクトリパス取得のサンプル")
         # ウィンドウの位置とサイズを設定
         self.setGeometry(100, 100, 400, 200)
+
+        #---------------------------------------------------
+        # ここから縦に要素を並べる
+        #---------------------------------------------------        
         # ボタンを作成
         button = QPushButton("ディレクトリを選択")
         button.clicked.connect(self.selectDirectory)
 
         self.setCentralWidget(button)
 
+
     def selectDirectory(self):
         options = QFileDialog.Options()
         directory_path = QFileDialog.getExistingDirectory(self, "ディレクトリを選択", options=options)
+        print(directory_path)
 
-        if directory_path:
-            print("選択したディレクトリパス:", directory_path)
 
 #===================================================
 # ここからウィンドウ作成
