@@ -16,9 +16,6 @@ class DirectoryPathApp(QMainWindow):
         # ウィンドウの位置とサイズを設定
         self.setGeometry(100, 100, 400, 200)
 
-        #---------------------------------------------------
-        # ここから縦に要素を並べる
-        #---------------------------------------------------        
         # ボタンを作成
         button = QPushButton("ディレクトリを選択")
         button.clicked.connect(self.selectDirectory)
