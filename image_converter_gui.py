@@ -1,26 +1,46 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog, QLabel
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog, QVBoxLayout, QWidget
 
 #===================================================
 # GUI作成
 #===================================================
-
-class DirectoryPathApp(QMainWindow):
+class image_converter(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        #---------------------------------------------------
+        # ウィンドウの設定
+        #---------------------------------------------------
         # ウィンドウタイトルを設定
         self.setWindowTitle("ディレクトリパス取得のサンプル")
         # ウィンドウの位置とサイズを設定
         self.setGeometry(100, 100, 400, 200)
 
+        #---------------------------------------------------
+        # ウィジェットの作成
+        #---------------------------------------------------
+        widget = QWidget(self)
+        self.setCentralWidget(widget)
+        # ウィジェットをレイアウトする
+        #   これ忘れると、ボタンが表示されない。ハマった…
+        layout = QVBoxLayout(widget)
+
+        #---------------------------------------------------
         # ボタンを作成
+        #---------------------------------------------------
+        # 必要なボタンを作成する
         button = QPushButton("ディレクトリを選択")
+        buttonB = QPushButton("Button B")
+        # ボタンのクリック時の挙動を追加する
         button.clicked.connect(self.selectDirectory)
 
-        self.setCentralWidget(button)
+        #---------------------------------------------------
+        # レイアウトする
+        #---------------------------------------------------
+        layout.addWidget(button)
+        layout.addWidget(buttonB)
 
 
     def selectDirectory(self):
@@ -32,7 +52,7 @@ class DirectoryPathApp(QMainWindow):
 #===================================================
 # ここからウィンドウ作成
 #===================================================
-if __name__ == "__main__":
+def main():
     # Qt Applicationを作成する
     if not QApplication.instance():
         app = QApplication(sys.argv)
@@ -40,8 +60,12 @@ if __name__ == "__main__":
         app = QApplication.instance()
 
     # formを作ってから表示する
-    main_window = DirectoryPathApp()
-    main_window.show()
+    window = image_converter()
+    window.show()
 
     # Qtループを実行
     sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    main()
