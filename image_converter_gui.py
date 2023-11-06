@@ -28,6 +28,12 @@ class image_converter(QMainWindow):
         layout = QVBoxLayout(widget)
 
         #---------------------------------------------------
+        # インスタンスを作成
+        #---------------------------------------------------
+        self.input = self.Directory()
+        self.output = self.Directory()
+
+        #---------------------------------------------------
         # ボタンを作成
         #---------------------------------------------------
         # 必要なボタンを作成する
@@ -43,7 +49,10 @@ class image_converter(QMainWindow):
         layout.addWidget(button_input)
         layout.addWidget(button_output)
 
-
+    #===================================================
+    # 処理を使いまわしたいので
+    # ディレクトリパスを取得する処理をClass化する
+    #===================================================
     class Directory:
         def __init__(self):
             self.path = ""
@@ -53,8 +62,6 @@ class image_converter(QMainWindow):
             self.path = QFileDialog.getExistingDirectory(None, "ディレクトリ選択", options=self.options)
             return(self.path)
 
-    input = Directory()
-    output = Directory()
 
 #===================================================
 # ここからウィンドウ作成
