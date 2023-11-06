@@ -31,11 +31,11 @@ class image_converter(QMainWindow):
         # ボタンを作成
         #---------------------------------------------------
         # 必要なボタンを作成する
-        button_input = QPushButton("ディレクトリを選択")
-        button_output = QPushButton("Button B")
+        button_input = QPushButton("画像があるフォルダ")
+        button_output = QPushButton("画像を出すフォルダ")
         # ボタンのクリック時の挙動を追加する
-        button_input.clicked.connect(self.selectDirectory)
-        button_output.clicked.connect(self.selectDirectory)
+        button_input.clicked.connect(self.input.echo_path)
+        button_output.clicked.connect(self.output.echo_path)
 
         #---------------------------------------------------
         # レイアウトする
@@ -44,11 +44,17 @@ class image_converter(QMainWindow):
         layout.addWidget(button_output)
 
 
-    def selectDirectory(self):
-        options = QFileDialog.Options()
-        directory_path = QFileDialog.getExistingDirectory(self, "ディレクトリを選択", options=options)
-        print(directory_path)
+    class Directory:
+        def __init__(self):
+            self.path = ""
+            self.options = QFileDialog.Options()
 
+        def echo_path(self):
+            self.path = QFileDialog.getExistingDirectory(None, "ディレクトリ選択", options=self.options)
+            return(self.path)
+
+    input = Directory()
+    output = Directory()
 
 #===================================================
 # ここからウィンドウ作成
