@@ -31,16 +31,17 @@ class image_converter(QMainWindow):
         # ボタンを作成
         #---------------------------------------------------
         # 必要なボタンを作成する
-        button = QPushButton("ディレクトリを選択")
-        buttonB = QPushButton("Button B")
+        button_input = QPushButton("ディレクトリを選択")
+        button_output = QPushButton("Button B")
         # ボタンのクリック時の挙動を追加する
-        button.clicked.connect(self.selectDirectory)
+        button_input.clicked.connect(self.selectDirectory)
+        button_output.clicked.connect(self.selectDirectory)
 
         #---------------------------------------------------
         # レイアウトする
         #---------------------------------------------------
-        layout.addWidget(button)
-        layout.addWidget(buttonB)
+        layout.addWidget(button_input)
+        layout.addWidget(button_output)
 
 
     def selectDirectory(self):
